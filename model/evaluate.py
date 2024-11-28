@@ -5,7 +5,7 @@ from model.model import MNISTFC
 from utils.vars import DEVICE, MODEL_PATH
 from utils.utils import set_global_seed
 
-def evaluate_model(model=None, seed=None):
+def evaluate_model():
     """
     Evaluate the model and return accuracy.
     """

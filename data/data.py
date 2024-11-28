@@ -1,7 +1,7 @@
 import torch
 from torchvision import datasets, transforms
 
-from utils.vars import DEVICE
+from utils.vars import DEVICE, BATCH_SIZE
 
 def compute_mean_std():
     """
@@ -27,7 +27,7 @@ def compute_mean_std():
 
     return mean, std
 
-def get_mnist_dataloader(batch_size=64, train=True):
+def get_mnist_dataloader(batch_size=BATCH_SIZE, train=True):
     """
     Returns a DataLoader for the MNIST dataset.
 

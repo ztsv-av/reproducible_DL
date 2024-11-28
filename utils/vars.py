@@ -1,9 +1,11 @@
 import torch
 
 
-# seed for reproducibility
+# seed
 SEED = 1
-# define the device globally
+# device for pytorch
 DEVICE = torch.device("cpu")
-# trained mnist model path
+# batch size during training
+BATCH_SIZE = 64
+# trained model path
 MODEL_PATH = "model/trained/mnist_model.pth"
