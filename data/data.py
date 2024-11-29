@@ -1,11 +1,11 @@
 import torch
 from torchvision import datasets, transforms
 
-from utils.vars import DEVICE
+from utils.vars import DEVICE, MNIST_PATH
 
 def compute_mean_std():
     """
-    Computes the mean and standard deviation of the MNIST training dataset.
+    Computes the mean and standard deviation of the MNIST TRAINING dataset.
 
     Returns:
         - mean (float): Mean pixel value.
@@ -14,7 +14,8 @@ def compute_mean_std():
     transform = transforms.Compose([
         transforms.ToTensor()
     ])
-    dataset = datasets.MNIST("./data", train=True, download=False, transform=transform)
+    dataset = datasets.MNIST(
+        root=MNIST_PATH, train=True, download=True, transform=transform)
     loader = torch.utils.data.DataLoader(dataset, batch_size=60000, shuffle=False)
     # load all images in one batch
     data_iter = iter(loader)
@@ -29,7 +30,7 @@ def compute_mean_std():
 
 def get_mnist_dataloader(batch_size=64, train=True):
     """
-    Returns a DataLoader for the MNIST dataset.
+    Returns a DataLoader for the MNIST dataset, train or test.
 
     Parameters:
         - batch_size (int), default=64: Batch size for the DataLoader.
@@ -38,8 +39,11 @@ def get_mnist_dataloader(batch_size=64, train=True):
     Returns:
         - loader (torch.utils.data.DataLoader): Dataloader for the MNIST dataset.
     """
+    print("Downloading data...")
     # compute mean and std from TRAINING data and save them
-    mean, std = compute_mean_std()
+    print("   Extracting mean, std...")
+    mean, std = compute_mean_std() # always compute mean, std for the train part
+    print("   Done!")
     # define the transform with the computed mean and std
     transform = transforms.Compose([
         transforms.ToTensor(),
@@ -47,10 +51,11 @@ def get_mnist_dataloader(batch_size=64, train=True):
     ])
     # define dataset
     dataset = datasets.MNIST(
-        "./data", train=train, download=False, transform=transform
+        root=MNIST_PATH, train=train, download=True, transform=transform
     )
     # define dataloader
     loader = torch.utils.data.DataLoader(
         dataset, batch_size=batch_size, shuffle=train  # shuffle only if training
     )
+    print("Done!")
     return loader
