@@ -27,8 +27,32 @@ For reproducibility to hold, the following criteria are maintained:
 - `tests/`: Includes unit tests for global variables and functions to ensure reproducibility.
 - `utils/`: Contains global variables and helper functions.
 - `main.py`: Runs training and evaluation. Outputs the final train and test accuracies and step results.
+- `Dockerfile` and `.dockerignore`: Docker files.
 
 ## How to Use
+
+### Docker
+
+If you have Docker installed, you can run the project in an isolated container without the need to manually set up Python and dependencies.
+
+1. Verify that Docker is installed and running:
+```
+docker --version
+```
+2. Pull the pre-built Docker image:
+```
+docker pull ztsvav/reproducible_dl
+```
+3. Run the test inside the Docker container:
+```
+docker run --rm -it ztsvav/reproducible_dl pytest
+```
+4. Run the pipeline:
+```
+docker run --rm -it ztsvav/reproducible_dl
+```
+
+### Python
 
 **Important**: 
 - Python version used: `3.9.19`.
