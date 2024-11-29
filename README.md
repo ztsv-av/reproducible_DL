@@ -30,7 +30,9 @@ For reproducibility to hold, the following criteria are maintained:
 
 ## How to Use
 
-**Important**: Python version used: `3.9.19`
+**Important**: 
+- Python version used: `3.9.19`.
+- The code was tested on Windows and MacOS.
 
 1. Clone the repository:
 ```
