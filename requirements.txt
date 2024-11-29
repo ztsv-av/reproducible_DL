@@ -32,7 +32,7 @@ pure_eval==0.2.3
 Pygments==2.18.0
 pytest==8.3.3
 python-dateutil==2.9.0.post0
-pywin32==308
+pywin32==308; sys_platform == 'win32'
 pyzmq==26.2.0
 six==1.16.0
 stack-data==0.6.3
