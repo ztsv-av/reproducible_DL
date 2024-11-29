@@ -47,18 +47,18 @@ def test_train_accuracy():
     Test for model.train.train_model() function.
     Checks whether train accuracy is the same as the expected accuracy.
     """
-    expected_accuracy = 96.47
+    expected_accuracy = 0.9647
     accuracy = train_model(save=False)
-    assert accuracy == pytest.approx(expected_accuracy, abs=1e-2), f"Computed accuracy {accuracy} is not close to expected {expected_accuracy}."
+    assert accuracy == pytest.approx(expected_accuracy, abs=1e-4), f"Computed accuracy {accuracy} is not close to expected {expected_accuracy}."
 
 def test_eval_accuracy():
     """
     Test for model.evaluate.evaluate_model() function.
     Checks whether train accuracy is the same as the expected accuracy.
     """
-    expected_accuracy = 96.92
+    expected_accuracy = 0.9692
     accuracy = evaluate_model()
-    assert accuracy == pytest.approx(expected_accuracy, abs=1e-2), f"Computed accuracy {accuracy} is not close to expected {expected_accuracy}."
+    assert accuracy == pytest.approx(expected_accuracy, abs=1e-4), f"Computed accuracy {accuracy} is not close to expected {expected_accuracy}."
 
 def test_load_model():
     """

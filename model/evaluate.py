@@ -47,5 +47,5 @@ def evaluate_model() -> None:
             outputs = model(data)
             # calculate accuracy
             correct, total = calculate_accuracy(outputs, label, correct, total)
-    accuracy = 100 * correct / total
+    accuracy = correct / total
     return accuracy

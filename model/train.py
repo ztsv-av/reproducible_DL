@@ -28,7 +28,7 @@ def forward(data: Tensor, optimizer: Optimizer, model: Module) -> Tensor:
     outputs = model(data)
     return outputs
 
-def backward(outputs: Tensor, label: Tensor, criterion: _Loss, optimizer: Optimizer) -> None:
+def backward(outputs: Tensor, label: Tensor, criterion: _Loss, optimizer: Optimizer) -> float:
     """
     Backward path in model training.
     
@@ -37,10 +37,14 @@ def backward(outputs: Tensor, label: Tensor, criterion: _Loss, optimizer: Optimi
         - label (torch.Tensor): Ground truth labels corresponding to the input data.
         - criterion (orch.nn.modules.loss._Loss): Loss function to compute the training loss.
         - optimizer (torch.optim.Optimizer): Optimizer for the model.
+    
+    Returns:
+        - loss (float): Running loss.
     """
     loss = criterion(outputs, label)
     loss.backward()
     optimizer.step()
+    return loss
 
 def train_model(save: bool = True) -> float:
     """
@@ -82,14 +86,14 @@ def train_model(save: bool = True) -> float:
             # forward path
             outputs = forward(data, optimizer, model)
             # backward path
-            backward(outputs, label, criterion, optimizer)
+            loss = backward(outputs, label, criterion, optimizer)
+            running_loss += loss.item()
             # accuracy
             correct, total = calculate_accuracy(outputs, label, correct, total)
         # calculate average loss and accuracy for the epoch
         epoch_loss = running_loss / len(train_loader)
-        accuracy = 100 * correct / total
-        print(f"    Epoch [{epoch+1}/{epochs}], Loss: {epoch_loss:.4f}, Accuracy: {accuracy:.2f}%")
-    accuracy = 100 * correct / total
+        accuracy = correct / total
+        print(f"    Epoch [{epoch+1}/{epochs}], Loss: {epoch_loss:.4f}, Accuracy: {accuracy:.4f}%")
 
     if save:
         # make sure directory where to save the model exists
