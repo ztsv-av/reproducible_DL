@@ -1,9 +1,9 @@
 import torch
 
-import pytest
+import os, pytest
 
 from model.model import MNISTFC
-from utils.vars import DEVICE
+from utils.vars import DEVICE, MODEL_PATH
 
 def test_model_input():
     """
@@ -36,3 +36,28 @@ def test_model_output():
     # test
     expected_shape = (1, 10)
     assert output.shape == expected_shape, f"Expected output shape {expected_shape}, got {output.shape}."
+
+def test_train_accuracy():
+    expected_accuracy = 0.9122
+
+def test_eval_accuracy():
+    expected_accuracy = 0.9249
+
+def test_load_model():
+    """
+    Tests that the model under path MODEL_PATH exists and that it has correct weights.
+    """
+    # load test model
+    test_model_path = "tests/test_data/mnist_model_test_weights.pth"
+    test_model = MNISTFC().to(DEVICE)
+    test_model.load_state_dict(torch.load(test_model_path, map_location=DEVICE, weights_only=True))
+    # 1. check if the path to the model exists
+    try:
+        trained_model = MNISTFC().to(DEVICE) # load trained model
+        trained_model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE, weights_only=True)) # load trained model weights
+    except Exception as e:
+        pytest.fail(f"Could not load model stored under {MODEL_PATH}: {e}.")
+    # 2. compare weights between the trained model and the test model
+    for (name1, param1), (name2, param2) in zip(test_model.named_parameters(), trained_model.named_parameters()):
+        assert name1 == name2, f"Expected parameter name {name1}, got {name2}."
+        assert param1 == param2, f"Expected parameter value {param1}, got {param2}."
