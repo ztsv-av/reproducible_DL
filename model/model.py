@@ -3,7 +3,7 @@ import torch.nn.functional as F
 
 class MNISTFC(nn.Module):
     """
-    A simple neural network with one fully connected hidden layer and one output fully connected layer.
+    A simple neural network with one hidden fully connected hidden layer and one output fully connected layer.
     """
     def __init__(self):
         super(MNISTFC, self).__init__()

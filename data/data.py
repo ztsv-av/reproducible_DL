@@ -1,9 +1,10 @@
 import torch
 from torchvision import datasets, transforms
+from torch.utils.data import DataLoader
 
-from utils.vars import DEVICE, BATCH_SIZE, MNIST_PATH
+from utils.vars import DEVICE, MNIST_PATH
 
-def compute_mean_std():
+def compute_mean_std() -> tuple[float, float]:
     """
     Computes the mean and standard deviation of the MNIST TRAINING dataset.
 
@@ -28,16 +29,16 @@ def compute_mean_std():
 
     return mean, std
 
-def get_mnist_dataloader(batch_size=BATCH_SIZE, train=True):
+def get_mnist_dataloader(train: bool = True) -> DataLoader:
     """
     Returns a DataLoader for the MNIST dataset, train or test.
+    Batch size is hardcoded for reproducibility.
 
     Parameters:
-        - batch_size (int), default=64: Batch size for the DataLoader.
         - train (bool), default=True: Whether to load training or testing data.
     
     Returns:
-        - loader (torch.utils.data.DataLoader): Dataloader for the MNIST dataset.
+        - dataloader (DataLoader): Dataloader for the MNIST dataset.
     """
     print("Downloading data...")
     # compute mean and std from TRAINING data and save them
@@ -54,8 +55,9 @@ def get_mnist_dataloader(batch_size=BATCH_SIZE, train=True):
         root=MNIST_PATH, train=train, download=True, transform=transform
     )
     # define dataloader
-    loader = torch.utils.data.DataLoader(
+    batch_size = 64 # hardcoded batch size
+    dataloader = DataLoader(
         dataset, batch_size=batch_size, shuffle=train  # shuffle only if training
     )
     print("Done!")
-    return loader
+    return dataloader
