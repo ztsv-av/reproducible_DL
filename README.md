@@ -30,6 +30,8 @@ For reproducibility to hold, the following criteria are maintained:
 
 ## How to Use
 
+**Important**: Python version used: `3.9.19`
+
 1. Clone the repository:
 ```
 git clone https://github.com/ztsv-av/reproducible_ML
