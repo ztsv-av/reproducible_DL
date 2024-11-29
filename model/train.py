@@ -1,5 +1,5 @@
 import torch
-import torch.optim as optim
+from torch.optim import Adam
 
 import os
 
@@ -8,7 +8,7 @@ from model.model import MNISTFC
 from utils.vars import DEVICE, MODEL_PATH, EPOCHS, LR
 from utils.utils import set_global_seed
 
-def train_model(epochs=EPOCHS, lr=LR):
+def train_model(model_class=MNISTFC, optimizer_class=Adam, epochs=EPOCHS, lr=LR):
     """
     Train the MNISTFC model and return the trained model.
 
@@ -20,11 +20,11 @@ def train_model(epochs=EPOCHS, lr=LR):
     # get training data
     train_loader = get_mnist_dataloader(train=True)
     # define model and move it to default device
-    model = MNISTFC().to(DEVICE)
+    model = model_class().to(DEVICE)
     # define loss
     criterion = torch.nn.CrossEntropyLoss()
     # define optimizer
-    optimizer = optim.SGD(model.parameters(), lr=lr)
+    optimizer = optimizer_class(model.parameters(), lr=lr)
 
     print("\nStarting training...")
     # training loop
