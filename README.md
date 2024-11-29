@@ -2,7 +2,7 @@
 
 This repository is the final project for the **Building Reproducible Analytical Pipelines** course, taught by **Prof. Dr. Bruno Rodrigues** at the University of Luxembourg. 
 
-Author: **Anton Zaitsev**.
+Author: **Anton Zaitsev**
 
 ## Overview
 
