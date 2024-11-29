@@ -33,7 +33,7 @@ For reproducibility to hold, the following criteria are maintained:
 1. Clone the repository:
 ```
 git clone https://github.com/ztsv-av/reproducible_ML
-cd your-repo-name
+cd reproducible_ML
 ```
 2. Create a virtual environment (recommended):
 ```
