@@ -51,11 +51,12 @@ pip install -r requirements.txt
 ```
 pytest
 ```
-5. Run the pipeline:
-```
-python main.py
-```
 
 If everything is correct, the output after running `pytest` should be as follows:
 
 ![Pytest result](ims/pytest.png)
+
+5. Run the pipeline:
+```
+python main.py
+```
