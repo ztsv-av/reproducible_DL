@@ -44,15 +44,16 @@ cd reproducible_DL
 ```
 docker --version
 ```
-3. Build the Docker image locally (might take a while):
+3. Run Docker Desktop
+4. Build the Docker image locally (might take a while):
 ```
 docker build -t reproducible_dl .
 ```
-4. Run the test inside the Docker container:
+5. Run the test inside the Docker container:
 ```
 docker run --rm -it reproducible_dl pytest
 ```
-5. Run the pipeline:
+6. Run the pipeline:
 ```
 docker run --rm -it reproducible_dl
 ```
