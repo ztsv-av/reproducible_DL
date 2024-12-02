@@ -49,13 +49,13 @@ docker --version
 ```
 docker build -t reproducible_dl .
 ```
-5. Run the test inside the Docker container:
-```
-docker run --rm -it reproducible_dl pytest
-```
-6. Run the pipeline:
+5. Run the pipeline:
 ```
 docker run --rm -it reproducible_dl
+```
+6. Run the test inside the Docker container:
+```
+docker run --rm -it reproducible_dl pytest
 ```
 
 ### Python
@@ -90,16 +90,7 @@ venv\Scripts\activate    # On Windows
 ```
 pip install -r requirements.txt
 ```
-4. Run tests to verify reproducibility:
-```
-pytest
-```
-
-If everything is correct, the output after running `pytest` should be as follows:
-
-![Pytest result](ims/pytest.png)
-
-5. Run the pipeline:
+4. Run the pipeline:
 - for `python`:
 ```
 python main.py
@@ -108,3 +99,11 @@ python main.py
 ```
 python3 main.py
 ```
+5. Run tests to verify reproducibility:
+```
+pytest
+```
+
+If everything is correct, the output after running `pytest` should be as follows:
+
+![Pytest result](ims/pytest.png)
