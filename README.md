@@ -60,8 +60,8 @@ docker run --rm -it reproducible_dl
 ### Python
 
 **Important**: 
-- Python version used: `3.9.19`.
-- The code was tested on Windows and MacOS.
+- Python version tested: `3.9.19`, `3.12.6`.
+- The code was tested on Windows (`3.9.19`) and MacOS (`3.12.6`).
 
 1. Clone the repository:
 ```
@@ -69,9 +69,20 @@ git clone https://github.com/ztsv-av/reproducible_DL
 cd reproducible_DL
 ```
 2. Create a virtual environment (recommended):
+- for `python`:
 ```
 python -m venv venv
+```
+- for `python3`:
+```
+python3 -m venv venv
+```
+- On Linux/Mac:
+```
 source venv/bin/activate # On Linux/Mac
+```
+- On Windows:
+```
 venv\Scripts\activate    # On Windows
 ```
 3. Install dependencies:
@@ -88,6 +99,11 @@ If everything is correct, the output after running `pytest` should be as follows
 ![Pytest result](ims/pytest.png)
 
 5. Run the pipeline:
+- for `python`:
 ```
 python main.py
+```
+- for `python3`:
+```
+python3 main.py
 ```
