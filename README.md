@@ -58,18 +58,23 @@ docker run --rm -it reproducible_dl
 docker run --rm -it reproducible_dl pytest
 ```
 
-### Python
+If everything is correct, the output from the 6th step should be as follows:
+
+![Docker Pytest results](ims/docker_pytest.png)
+
+### Python `venv`
 
 **Important**: 
-- Python version tested: `3.9.19`, `3.12.6`.
-- The code was tested on Windows (`3.9.19`) and MacOS (`3.12.6`).
+- Python version used: `3.9.19`.
+- The OS used: `Windows`.
+- If the code is executed on Unix-based operating systems, the model training results (model weights) differ from those produced on Windows, causing the `test_load_model()` test to fail. It's important to note that the code itself functions correctly, and only this specific test fails. This behavior was observed on `MacOS` using Python version `3.12.6`.
 
 1. Clone the repository:
 ```
 git clone https://github.com/ztsv-av/reproducible_DL
 cd reproducible_DL
 ```
-2. Create a virtual environment (recommended):
+2. Create a virtual environment and activate it:
 - for `python`:
 ```
 python -m venv venv
@@ -106,4 +111,4 @@ pytest
 
 If everything is correct, the output after running `pytest` should be as follows:
 
-![Pytest result](ims/pytest.png)
+![Venv Pytest result](ims/venv_pytest.png)
