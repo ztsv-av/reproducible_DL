@@ -35,21 +35,26 @@ For reproducibility to hold, the following criteria are maintained:
 
 If you have Docker installed, you can run the project in an isolated container without the need to manually set up Python and dependencies.
 
-1. Verify that Docker is installed and running:
+1. Clone the repository:
+```
+git clone https://github.com/ztsv-av/reproducible_DL
+cd reproducible_DL
+```
+2. Verify that Docker is installed and running:
 ```
 docker --version
 ```
-2. Pull the pre-built Docker image:
+3. Build the Docker image locally (might take a while):
 ```
-docker pull ztsvav/reproducible_dl
+docker build -t reproducible_dl .
 ```
-3. Run the test inside the Docker container:
+4. Run the test inside the Docker container:
 ```
-docker run --rm -it ztsvav/reproducible_dl pytest
+docker run --rm -it reproducible_dl pytest
 ```
-4. Run the pipeline:
+5. Run the pipeline:
 ```
-docker run --rm -it ztsvav/reproducible_dl
+docker run --rm -it reproducible_dl
 ```
 
 ### Python
@@ -60,8 +65,8 @@ docker run --rm -it ztsvav/reproducible_dl
 
 1. Clone the repository:
 ```
-git clone https://github.com/ztsv-av/reproducible_ML
-cd reproducible_ML
+git clone https://github.com/ztsv-av/reproducible_DL
+cd reproducible_DL
 ```
 2. Create a virtual environment (recommended):
 ```
