@@ -1,6 +1,6 @@
 # Reproducible Deep Learning Pipeline for MNIST Dataset
 
-This repository is the final project for the **Building Reproducible Analytical Pipelines** course, taught by **Prof. Dr. Bruno Rodrigues** at the University of Luxembourg. 
+This repository is the final project for the **Building Reproducible Analytical Pipelines** course, taught by **Dr. Bruno Rodrigues** at the University of Luxembourg. 
 
 Author: **Anton Zaitsev**
 
