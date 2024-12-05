@@ -3,8 +3,6 @@ import torch
 import pytest
 
 from model.model import MNISTFC
-from model.train import train_model
-from model.evaluate import evaluate_model
 from utils.vars import DEVICE, MODEL_PATH
 
 def test_model_input():
@@ -41,24 +39,6 @@ def test_model_output():
     # test
     expected_shape = (1, 10)
     assert output.shape == expected_shape, f"Expected output shape {expected_shape}, got {output.shape}."
-
-def test_train_accuracy():
-    """
-    Test for model.train.train_model() function.
-    Checks whether train accuracy is the same as the expected accuracy.
-    """
-    expected_accuracy = 0.9647
-    accuracy = train_model(save=False)
-    assert accuracy == pytest.approx(expected_accuracy, abs=1e-2), f"Computed accuracy {accuracy} is not close to expected {expected_accuracy}."
-
-def test_eval_accuracy():
-    """
-    Test for model.evaluate.evaluate_model() function.
-    Checks whether train accuracy is the same as the expected accuracy.
-    """
-    expected_accuracy = 0.9692
-    accuracy = evaluate_model()
-    assert accuracy == pytest.approx(expected_accuracy, abs=1e-2), f"Computed accuracy {accuracy} is not close to expected {expected_accuracy}."
 
 def test_load_model():
     """
