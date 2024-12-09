@@ -1,4 +1,4 @@
-name: GitHub Tests
+name: GitHub Actions Docker Build and Test
 
 on:
   push:
@@ -9,34 +9,18 @@ on:
       - main  # run tests when a pull request targets the main branch
 
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]  # test on both Ubuntu and Windows
-        python-version: ['3.9']
+  docker-test:
+    runs-on: ubuntu:24.02
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v2
 
-    - name: Cache dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
+    - name: Build Docker image
+      run: docker build -t reproducible_dl .
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-
-    - name: Run tests
-      run: pytest
+    - name: Run tests inside Docker container
+      run: docker run --rm -it reproducible_dl pytest
