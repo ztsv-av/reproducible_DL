@@ -10,7 +10,7 @@ on:
 
 jobs:
   docker-test:
-    runs-on: ubuntu:24.02
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
