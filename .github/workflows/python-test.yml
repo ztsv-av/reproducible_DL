@@ -1,4 +1,4 @@
-name: GitHub Actions Docker & Python Build and Test
+name: Python Test
 
 on:
   push:
@@ -9,27 +9,11 @@ on:
       - main  # run tests when a pull request targets the main branch
 
 jobs:
-  docker-test: # docker
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Set up Docker
-      uses: docker/setup-buildx-action@v2
-
-    - name: Build Docker image
-      run: docker build -t reproducible_dl .
-
-    - name: Run tests inside Docker container
-      run: docker run --rm reproducible_dl pytest
-
-  python-test: # python
+  python-test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]  # test on both Ubuntu and Windows
+        os: [ubuntu-latest, windows-latest]  # test on Ubuntu and Windows
         python-version: ['3.9']
 
     steps:
